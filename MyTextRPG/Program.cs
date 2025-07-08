@@ -9,12 +9,20 @@
             set { currentScene = value; }
         }
 
+        static Character player;
+        public static Character Player
+        {
+            get { return player; }
+        }
+
+
         static int? userInput = null;
         public static int? UserInput
         {
             get { return userInput; }
             set { userInput = value; }
         }
+
 
         static void Main(string[] args)
         {
@@ -32,7 +40,7 @@
 
         private void Init()
         {
-            
+            player = new Character();
         }
 
         private void Update()

@@ -23,7 +23,12 @@ namespace MyTextRPG
             Console.WriteLine();
 
             // 캐릭터 스탯 출력
-
+            Console.WriteLine($"Lv. {Program.Player.characterStat.Level}");
+            Console.WriteLine($"{Program.Player.characterStat.Name} ( {Program.Player.characterStat.RootClass} )");
+            Console.WriteLine($"공격력 : {Program.Player.characterStat.Attack}");
+            Console.WriteLine($"방어력 : {Program.Player.characterStat.Armor}");
+            Console.WriteLine($"체 력 : {Program.Player.characterStat.Health}");
+            Console.WriteLine($"Gold : {Program.Player.characterStat.Gold} G");
             Console.WriteLine();
 
             Console.WriteLine("1. 나가기");
