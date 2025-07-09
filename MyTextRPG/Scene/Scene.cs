@@ -10,12 +10,13 @@ namespace MyTextRPG
     {
         public virtual void Render()
         {
+            Program.UserInput = null;
+            Console.Clear();
 
         }
 
         public virtual int GetInput()
         {
-            Program.UserInput = null;
 
             Console.WriteLine("원하시는 행동을 입력해주세요.");
             Console.Write(">> ");

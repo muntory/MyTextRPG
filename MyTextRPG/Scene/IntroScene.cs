@@ -10,8 +10,8 @@ namespace MyTextRPG
     {
         public enum IntroCommand
         {
-            Invalid,
-            ViewStatus,
+            Invalid = -1,
+            ViewStatus = 1,
             OpenInventory,
             OpenStore,
 
@@ -19,7 +19,8 @@ namespace MyTextRPG
 
         public override void Render()
         {
-            Console.Clear();
+            base.Render();
+
             Console.WriteLine("스파르타 마을에 오신 여러분 환영합니다.");
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine();
@@ -49,10 +50,10 @@ namespace MyTextRPG
                     Program.CurrentScene = new StatusScene();
                     break;
                 case IntroCommand.OpenInventory:
-                    Console.WriteLine("인벤토리 호출");
+                    Program.CurrentScene = new InventoryScene();
                     break;
                 case IntroCommand.OpenStore:
-                    Console.WriteLine("상점 호출");
+                    Program.CurrentScene = new StoreScene();
                     break;
                 default:
                     ret = 0;

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MyTextRPG": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\MyTextRPG\\MyTextRPG"
+    }
+  }
+}

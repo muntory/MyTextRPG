@@ -11,7 +11,6 @@ namespace MyTextRPG
         public static int BaseAttack { get; } = 10;
         public static int BaseArmor { get; } = 5;
         public static int BaseHealth { get; } = 100;
-        public static int BaseGold { get; } = 1500;
-        
+
     }
 }
