@@ -36,7 +36,7 @@ namespace MyTextRPG
                 case CharacterStat.CharacterStatType.Attack:
                     StatType = "공격력";
                     break;
-                case CharacterStat.CharacterStatType.Armor:
+                case CharacterStat.CharacterStatType.Defense:
                     StatType = "방어력";
                     break;
                 case CharacterStat.CharacterStatType.Health:

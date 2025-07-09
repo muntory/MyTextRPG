@@ -20,7 +20,8 @@ namespace MyTextRPG
 
         public CharacterStat characterStat;
         public List<int> inventory;
-        public List<int> equipList;
+        public Dictionary<ItemType, int> equipList;
+        
 
         public Character()
         {
@@ -36,7 +37,7 @@ namespace MyTextRPG
             OnBuyItem += BuyItem;
             OnSellItem += SellItem;
             OnRest += Rest;
-            equipList = new List<int>();
+            equipList = new Dictionary<ItemType, int>();
             Gold = 1500;
         }
 
@@ -45,16 +46,27 @@ namespace MyTextRPG
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
             if (itemData == null) return;
             int modifierValue;
-            
-            if (equipList.Contains(itemId))
+            int equippedItemId;
+
+            if (equipList.Values.Contains(itemId))
             {
+                equipList.Remove(itemData.Type);
                 modifierValue = -itemData.Value;
-                equipList.Remove(itemId);
+
+            }
+            else if (equipList.ContainsKey(itemData.Type))
+            {
+                ItemData equippedItemData = ResourceManager.Instance.GetItemData(equipList[itemData.Type]);
+                equipList.Remove(equippedItemData.Type);
+                modifierValue = -equippedItemData.Value;
+
+                equipList.Add(itemData.Type, itemData.Id);
+                modifierValue += itemData.Value;
             }
             else
             {
+                equipList.Add(itemData.Type, itemData.Id);
                 modifierValue = itemData.Value;
-                equipList.Add(itemId);
             }
 
             switch (itemData.StatType)
@@ -62,8 +74,8 @@ namespace MyTextRPG
                 case CharacterStat.CharacterStatType.Attack:
                     characterStat.Attack += modifierValue;
                     break;
-                case CharacterStat.CharacterStatType.Armor:
-                    characterStat.Armor += modifierValue;
+                case CharacterStat.CharacterStatType.Defense:
+                    characterStat.Defense += modifierValue;
                     break;
                 case CharacterStat.CharacterStatType.Health:
                     characterStat.Health += modifierValue;
@@ -72,7 +84,6 @@ namespace MyTextRPG
                     break;
             }
 
-            
         }
 
         // return
@@ -103,13 +114,17 @@ namespace MyTextRPG
 
         public void SellItem(int itemId)
         {
+            ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
             StoreItemData storeItemData = ResourceManager.Instance.GetStoreItemData(itemId);
             if (!inventory.Contains(itemId))
                 return;
 
-            if (equipList.Contains(itemId))
+            if (equipList.ContainsKey(itemData.Type))
             {
-                EquipItem(itemId);
+                if (equipList[itemData.Type] == itemId)
+                {
+                    EquipItem(itemId);
+                }
             }
 
             Gold += (int)(storeItemData.Price * 0.85f);

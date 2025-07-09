@@ -25,7 +25,7 @@ namespace MyTextRPG
             Console.WriteLine($"Lv. {Program.Player.characterStat.Level}");
             Console.WriteLine($"{Program.Player.Name} ( {Program.Player.RootClass} )");
             Console.WriteLine($"공격력 : {CharacterBaseStatData.BaseAttack + Program.Player.characterStat.Attack} {(Program.Player.characterStat.Attack > 0 ? $"(+{Program.Player.characterStat.Attack})" : "")}");
-            Console.WriteLine($"방어력 : {CharacterBaseStatData.BaseArmor + Program.Player.characterStat.Armor} {(Program.Player.characterStat.Armor > 0 ? $"(+{Program.Player.characterStat.Armor})" : "")}");
+            Console.WriteLine($"방어력 : {CharacterBaseStatData.BaseDefense + Program.Player.characterStat.Defense} {(Program.Player.characterStat.Defense > 0 ? $"(+{Program.Player.characterStat.Defense})" : "")}");
             Console.WriteLine($"체 력 : {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health}  {(Program.Player.characterStat.Health > 0 ? $"(+{Program.Player.characterStat.Health})" : "")}");
             Console.WriteLine($"Gold : {Program.Player.Gold} G");
             Console.WriteLine();

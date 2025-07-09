@@ -23,7 +23,7 @@ namespace MyTextRPG
                 return string.Empty;
 
             string EquipMark;
-            if (Program.Player.equipList.Contains(itemId))
+            if (Program.Player.equipList.ContainsValue(itemData.Id))
             {
                 EquipMark = "[E]";
             }
@@ -31,14 +31,14 @@ namespace MyTextRPG
             {
                 EquipMark = "";
             }
-
+           
             string StatType;
             switch (itemData.StatType)
             {
                 case CharacterStat.CharacterStatType.Attack:
                     StatType = "공격력";
                     break;
-                case CharacterStat.CharacterStatType.Armor:
+                case CharacterStat.CharacterStatType.Defense:
                     StatType = "방어력";
                     break;
                 case CharacterStat.CharacterStatType.Health:
