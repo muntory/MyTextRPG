@@ -15,6 +15,7 @@ namespace MyTextRPG
 
         public Action<int> OnEquipItem;
         public Func<int, int> OnBuyItem;
+        public Action<int> OnSellItem;
         public Func<int> OnRest;
 
         public CharacterStat characterStat;
@@ -33,6 +34,7 @@ namespace MyTextRPG
 
             OnEquipItem += EquipItem;
             OnBuyItem += BuyItem;
+            OnSellItem += SellItem;
             OnRest += Rest;
             equipList = new List<int>();
             Gold = 1500;
@@ -97,6 +99,21 @@ namespace MyTextRPG
             inventory.Add(itemId);
 
             return 1;
+        }
+
+        public void SellItem(int itemId)
+        {
+            StoreItemData storeItemData = ResourceManager.Instance.GetStoreItemData(itemId);
+            if (!inventory.Contains(itemId))
+                return;
+
+            if (equipList.Contains(itemId))
+            {
+                EquipItem(itemId);
+            }
+
+            Gold += (int)(storeItemData.Price * 0.85f);
+            inventory.Remove(itemId);
         }
 
         public int Rest()

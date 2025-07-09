@@ -2,35 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using static MyTextRPG.BuyScene;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace MyTextRPG
 {
-    internal class StoreScene : Scene
+    internal class SellScene : Scene
     {
-
-        Store store;
-        // itemId, 입력 명령어
-
-        public enum StoreCommand
+        public enum SellCommand
         {
             Invalid = -1,
             Quit,
-            Buy,
-            Sell,
 
         }
 
-        private string GetItemDescriptionString(int itemId)
+        private string GetItemDescriptionString(int index, int itemId)
         {
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
             StoreItemData storeItemData = ResourceManager.Instance.GetStoreItemData(itemId);
+
             if (itemData == null)
                 return string.Empty;
 
-            
             string StatType;
             switch (itemData.StatType)
             {
@@ -48,37 +42,38 @@ namespace MyTextRPG
                     break;
             }
 
-
-            return $"- {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(Program.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
+            return $"- {index} {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(int)(storeItemData.Price * 0.85f)} G";
         }
 
         public override void Render()
         {
             base.Render();
 
-            Console.WriteLine("상점");
-            Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
+            Console.WriteLine("상점 - 아이템 판매");
+            Console.WriteLine("보유중인 아이템을 판매할 수 있는 상점입니다.");
             Console.WriteLine();
             Console.WriteLine("[보유 골드]");
             Console.WriteLine($"{Program.Player.Gold} G");
             Console.WriteLine();
 
-            foreach (int itemId in store.itemList)
+
+            int itemIndex = 1;
+            foreach (int itemId in Program.Player.inventory)
             {
                 ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
                 if (itemData == null) continue;
 
-                Console.WriteLine(GetItemDescriptionString(itemId));
+                Console.WriteLine(GetItemDescriptionString(itemIndex, itemId));
+                itemIndex++;
 
             }
             Console.WriteLine();
 
-            Console.WriteLine("1. 아이템 구매");
-            Console.WriteLine("2. 아이템 판매");
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
 
             PrintErrorMsg();
+
 
         }
 
@@ -86,18 +81,24 @@ namespace MyTextRPG
         {
             int ret = base.GetInput();
 
-            StoreCommand cmd = (StoreCommand)ret;
+            if (ret > 0)
+            {
+                if (ret <= Program.Player.inventory.Count)
+                {
+                    Program.Player.OnSellItem?.Invoke((Program.Player.inventory[ret - 1]));
+
+                    errorMsg = "판매를 완료했습니다.";
+                    return ret;
+                }
+
+            }
+
+            SellCommand cmd = (SellCommand)ret;
 
             switch (cmd)
             {
-                case StoreCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
-                    break;
-                case StoreCommand.Buy:
-                    Program.CurrentScene = new BuyScene();
-                    break;
-                case StoreCommand.Sell:
-                    Program.CurrentScene = new SellScene();
+                case SellCommand.Quit:
+                    Program.CurrentScene = new StoreScene();
                     break;
                 default:
                     ret = -1;
@@ -108,11 +109,7 @@ namespace MyTextRPG
             return ret;
 
         }
-
-        public StoreScene()
-        {
-            store = new Store();
-
-        }
     }
+
+    
 }
