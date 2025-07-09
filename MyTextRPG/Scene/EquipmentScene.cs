@@ -16,8 +16,6 @@ namespace MyTextRPG
 
         }
 
-
-
         private string GetItemDescriptionString(int index, int itemId)
         {
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
@@ -83,12 +81,7 @@ namespace MyTextRPG
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
 
-            if (Program.UserInput.HasValue && (EquipmentCommand)Program.UserInput == EquipmentCommand.Invalid)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
-
-            }
+            PrintErrorMsg();
 
         }
 
@@ -114,6 +107,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
+                    errorMsg = "잘못된 입력입니다.";
                     break;
             }
 

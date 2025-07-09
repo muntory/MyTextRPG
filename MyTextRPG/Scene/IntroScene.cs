@@ -30,12 +30,7 @@ namespace MyTextRPG
             Console.WriteLine("3. 상점");
             Console.WriteLine();
 
-            if (Program.UserInput.HasValue && (IntroCommand)Program.UserInput == IntroCommand.Invalid)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
-
-            }
+            PrintErrorMsg();
 
         }
 
@@ -57,6 +52,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = 0;
+                    errorMsg = "잘못된 입력입니다.";
                     break;
             }
 

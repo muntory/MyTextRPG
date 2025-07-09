@@ -16,7 +16,6 @@ namespace MyTextRPG
         }
 
         Store store;
-        string msg;
 
         public BuyScene()
         {
@@ -78,20 +77,7 @@ namespace MyTextRPG
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
 
-
-            if (Program.UserInput.HasValue && (BuyCommand)Program.UserInput == BuyCommand.Invalid)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
-
-            }
-
-            if (msg != null)
-            {
-                Console.WriteLine(msg);
-                Console.WriteLine();
-                msg = null;
-            }
+            PrintErrorMsg();
 
 
         }
@@ -110,18 +96,20 @@ namespace MyTextRPG
                     {
                         if (result > 0)
                         {
-                            msg = "구매를 완료했습니다.";
+                            errorMsg = "구매를 완료했습니다.";
                         }
                         else if (result < 0)
                         {
-                            msg = "이미 구매한 아이템입니다.";
+                            errorMsg = "이미 구매한 아이템입니다.";
                         }
                         else
                         {
-                            msg = "Gold가 부족합니다.";
+                            errorMsg = "Gold가 부족합니다.";
                         }
                     }
+                    return ret;
                 }
+                
             }
 
             BuyCommand cmd = (BuyCommand)ret;
@@ -133,6 +121,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
+                    errorMsg = "잘못된 입력입니다.";
                     break;
             }
 

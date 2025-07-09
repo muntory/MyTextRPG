@@ -76,12 +76,7 @@ namespace MyTextRPG
             Console.WriteLine("0. 나가기");
             Console.WriteLine();
 
-            if (Program.UserInput.HasValue && (StoreCommand)Program.UserInput == StoreCommand.Invalid)
-            {
-                Console.WriteLine("잘못된 입력입니다.");
-                Console.WriteLine();
-
-            }
+            PrintErrorMsg();
 
         }
 
@@ -101,6 +96,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
+                    errorMsg = "잘못된 입력입니다.";
                     break;
             }
 
