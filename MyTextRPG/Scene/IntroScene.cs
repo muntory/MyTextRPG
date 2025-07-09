@@ -14,7 +14,7 @@ namespace MyTextRPG
             ViewStatus = 1,
             OpenInventory,
             OpenStore,
-
+            GoRest,
         }
 
         public override void Render()
@@ -28,6 +28,7 @@ namespace MyTextRPG
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
+            Console.WriteLine("4. 휴식하기");
             Console.WriteLine();
 
             PrintErrorMsg();
@@ -50,8 +51,11 @@ namespace MyTextRPG
                 case IntroCommand.OpenStore:
                     Program.CurrentScene = new StoreScene();
                     break;
+                case IntroCommand.GoRest:
+                    Program.CurrentScene = new RestScene();
+                    break;
                 default:
-                    ret = 0;
+                    ret = -1;
                     errorMsg = "잘못된 입력입니다.";
                     break;
             }

@@ -45,5 +45,85 @@
     "StatType": "Attack",
     "Value": 5,
     "Description": "어디선가 사용됐던거 같은 도끼입니다."
+  },
+
+  {
+    "Id": 7,
+    "Name": "강철 검",
+    "StatType": "Attack",
+    "Value": 10,
+    "Description": "단단한 강철로 제작된 검입니다."
+  },
+
+  {
+    "Id": 8,
+    "Name": "마법사의 로브",
+    "StatType": "Armor",
+    "Value": 4,
+    "Description": "마법사가 입던 로브로, 마법 방어에 효과적입니다."
+  },
+
+  {
+    "Id": 9,
+    "Name": "불타는 활",
+    "StatType": "Attack",
+    "Value": 8,
+    "Description": "불의 마법이 깃든 활입니다."
+  },
+
+  {
+    "Id": 10,
+    "Name": "튼튼한 방패",
+    "StatType": "Armor",
+    "Value": 11,
+    "Description": "강력한 방어력을 자랑하는 방패입니다."
+  },
+
+  {
+    "Id": 11,
+    "Name": "독 묻은 단검",
+    "StatType": "Attack",
+    "Value": 6,
+    "Description": "작지만 강력한 독이 묻어있는 단검입니다."
+  },
+
+  {
+    "Id": 12,
+    "Name": "은빛 투구",
+    "StatType": "Armor",
+    "Value": 7,
+    "Description": "빛나는 은으로 만든 투구입니다."
+  },
+
+  {
+    "Id": 13,
+    "Name": "전사의 도끼",
+    "StatType": "Attack",
+    "Value": 9,
+    "Description": "전장에서 사용되는 묵직한 도끼입니다."
+  },
+
+  {
+    "Id": 14,
+    "Name": "가죽 갑옷",
+    "StatType": "Armor",
+    "Value": 3,
+    "Description": "가볍고 움직이기 편한 가죽 갑옷입니다."
+  },
+
+  {
+    "Id": 15,
+    "Name": "천둥의 망치",
+    "StatType": "Attack",
+    "Value": 12,
+    "Description": "천둥의 힘이 깃든 전설의 망치입니다."
+  },
+
+  {
+    "Id": 16,
+    "Name": "마나의 방패",
+    "StatType": "Armor",
+    "Value": 6,
+    "Description": "마나의 흐름을 차단해주는 신비한 방패입니다."
   }
 ]

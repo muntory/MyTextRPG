@@ -12,12 +12,10 @@ namespace MyTextRPG
 
         public Store()
         {
-            itemList.Add(1);
-            itemList.Add(2);
-            itemList.Add(3);
-            itemList.Add(4);
-            itemList.Add(5);
-            itemList.Add(6);
+            for (int i = 0; i < 16; ++i)
+            {
+                itemList.Add(i + 1);
+            }
 
         }
     }

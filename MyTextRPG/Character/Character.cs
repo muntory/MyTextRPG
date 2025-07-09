@@ -15,6 +15,7 @@ namespace MyTextRPG
 
         public Action<int> OnEquipItem;
         public Func<int, int> OnBuyItem;
+        public Func<int> OnRest;
 
         public CharacterStat characterStat;
         public List<int> inventory;
@@ -32,6 +33,7 @@ namespace MyTextRPG
 
             OnEquipItem += EquipItem;
             OnBuyItem += BuyItem;
+            OnRest += Rest;
             equipList = new List<int>();
             Gold = 1500;
         }
@@ -95,6 +97,19 @@ namespace MyTextRPG
             inventory.Add(itemId);
 
             return 1;
+        }
+
+        public int Rest()
+        {
+            if (Gold < RestScene.Fare)
+            {
+                return 0;
+            }
+
+            Gold -= RestScene.Fare;
+            characterStat.Health = Math.Min(characterStat.Health + RestScene.HealAmount, 0);
+            return 1;
+            
         }
 
       
