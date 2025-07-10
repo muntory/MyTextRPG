@@ -22,7 +22,7 @@ namespace MyTextRPG
             base.Render();
 
             Console.WriteLine("휴식하기");
-            Console.WriteLine($"{Fare} G 를 내면 체력을 회복할 수 있습니다. (보유 골드 : {Program.Player.Gold} G)");
+            Console.WriteLine($"{Fare} G 를 내면 체력을 회복할 수 있습니다. (보유 골드 : {GameManager.Instance.Player.Gold} G)");
             Console.WriteLine();
 
             Console.WriteLine("1. 휴식하기");
@@ -40,7 +40,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case RestCommand.Rest:
-                    int? result = Program.Player.OnRest?.Invoke();
+                    int? result = GameManager.Instance.Player.OnRest?.Invoke();
                     if (result.HasValue)
                     {
                         if (result == 0)
@@ -49,12 +49,12 @@ namespace MyTextRPG
                         }
                         if (result == 1)
                         {
-                            errorMsg = $"휴식을 완료했습니다. (현재 체력 : {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health})";
+                            errorMsg = $"휴식을 완료했습니다. (현재 체력 : {GameManager.Instance.Player.characterStat.Health})";
                         }
                     }
                     break;
                 case RestCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
+                    GameManager.Instance.CurrentScene = new IntroScene();
                     break;
                 default:
                     ret = -1;

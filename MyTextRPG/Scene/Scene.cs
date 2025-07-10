@@ -12,7 +12,6 @@ namespace MyTextRPG
         protected string errorMsg = null;
         public virtual void Render()
         {
-            Program.UserInput = null;
             Console.Clear();
 
         }

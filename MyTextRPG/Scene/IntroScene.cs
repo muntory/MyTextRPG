@@ -16,6 +16,8 @@ namespace MyTextRPG
             OpenStore,
             GoDungeon,
             GoRest,
+            GameExit,
+
         }
 
         public override void Render()
@@ -31,6 +33,7 @@ namespace MyTextRPG
             Console.WriteLine("3. 상점");
             Console.WriteLine("4. 던전 입장");
             Console.WriteLine("5. 휴식하기");
+            Console.WriteLine("6. 게임종료");
             Console.WriteLine();
 
             PrintErrorMsg();
@@ -45,19 +48,23 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case IntroCommand.ViewStatus:
-                    Program.CurrentScene = new StatusScene();
+                    GameManager.Instance.CurrentScene = new StatusScene();
                     break;
                 case IntroCommand.OpenInventory:
-                    Program.CurrentScene = new InventoryScene();
+                    GameManager.Instance.CurrentScene = new InventoryScene();
                     break;
                 case IntroCommand.OpenStore:
-                    Program.CurrentScene = new StoreScene();
+                    GameManager.Instance.CurrentScene = new StoreScene();
                     break;
                 case IntroCommand.GoDungeon:
-                    Program.CurrentScene = new DungeonScene();
+                    GameManager.Instance.CurrentScene = new DungeonScene();
                     break;
                 case IntroCommand.GoRest:
-                    Program.CurrentScene = new RestScene();
+                    GameManager.Instance.CurrentScene = new RestScene();
+                    break;
+                case IntroCommand.GameExit:
+                    GameManager.Instance.SaveGameData();
+                    Environment.Exit(0);
                     break;
                 default:
                     ret = -1;

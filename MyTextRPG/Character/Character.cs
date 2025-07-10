@@ -49,16 +49,14 @@ namespace MyTextRPG
             RootClass = "전사";
             characterStat = new CharacterStat();
             inventory = new List<int>();
-            inventory.Add(1);
-            inventory.Add(2);
-            inventory.Add(3);
+            equipList = new Dictionary<ItemType, int>();
 
             OnEquipItem += EquipItem;
             OnBuyItem += BuyItem;
             OnSellItem += SellItem;
             OnDie += Die;
             OnRest += Rest;
-            equipList = new Dictionary<ItemType, int>();
+
             Gold = 1500;
         }
 
@@ -93,13 +91,10 @@ namespace MyTextRPG
             switch (itemData.StatType)
             {
                 case CharacterStat.CharacterStatType.Attack:
-                    characterStat.Attack += modifierValue;
+                    characterStat.ModifierAttack += modifierValue;
                     break;
                 case CharacterStat.CharacterStatType.Defense:
-                    characterStat.Defense += modifierValue;
-                    break;
-                case CharacterStat.CharacterStatType.Health:
-                    characterStat.Health += modifierValue;
+                    characterStat.ModifierDefense += modifierValue;
                     break;
                 default:
                     break;
@@ -160,7 +155,7 @@ namespace MyTextRPG
             }
 
             Gold -= RestScene.Fare;
-            characterStat.Health = Math.Min(characterStat.Health + RestScene.HealAmount, 0);
+            characterStat.Health += RestScene.HealAmount;
             return 1;
 
         }
@@ -182,15 +177,16 @@ namespace MyTextRPG
                 inventory.Remove(randomItemId); // 아이템 제거
             }
 
-            characterStat.Health = -90;
-            Program.CurrentScene = new IntroScene();
+            characterStat.Health = 10;
+            GameManager.Instance.CurrentScene = new IntroScene();
         }
 
         public void LevelUp()
         {
             characterStat.Level++;
-            CharacterBaseStatData.BaseAttack += 0.5f;
-            CharacterBaseStatData.BaseDefense += 1f;
+            characterStat.BaseAttack += 0.5;
+            characterStat.BaseDefense += 1.0;
+
         }
     }
 }

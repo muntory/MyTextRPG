@@ -7,28 +7,8 @@ namespace MyTextRPG
     internal class Program
     {
         ResourceManager resourceManager;
+        GameManager gameManager;
         
-        static Scene currentScene = new IntroScene();
-        public static Scene CurrentScene
-        {
-            get { return currentScene; }
-            set { currentScene = value; }
-        }
-
-        static Character player;
-        public static Character Player
-        {
-            get { return player; }
-        }
-
-        static int? userInput = null;
-        public static int? UserInput
-        {
-            get { return userInput; }
-            set { userInput = value; }
-        }
-
-
         static void Main(string[] args)
         {
             Program program = new Program();
@@ -45,7 +25,11 @@ namespace MyTextRPG
 
         private void Init()
         {
-            player = new Character();
+            gameManager = new GameManager();
+            GameManager.Instance.CurrentScene = new IntroScene();
+            GameManager.Instance.Player = new Character();
+            GameManager.Instance.LoadGameData();
+
             resourceManager = new ResourceManager();
             resourceManager.LoadItemData("Data/ItemDataList.json");
             resourceManager.LoadStoreItemData("Data/StoreItemDataList.json");
@@ -54,12 +38,12 @@ namespace MyTextRPG
 
         private void Update()
         {
-            userInput = currentScene.GetInput();
+            GameManager.Instance.UserInput = GameManager.Instance.CurrentScene.GetInput();
         }
 
         private void Render()
         {
-            currentScene.Render();
+            GameManager.Instance.CurrentScene.Render();
         }
         
     }

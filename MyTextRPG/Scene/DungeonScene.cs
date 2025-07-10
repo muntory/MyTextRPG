@@ -49,9 +49,6 @@ namespace MyTextRPG
 
             PrintErrorMsg();
 
-            
-            
-
         }
 
         private void PopUpDungeonResult()
@@ -65,8 +62,8 @@ namespace MyTextRPG
                 Console.WriteLine();
 
                 Console.WriteLine("[탐험 결과]");
-                Console.WriteLine($"체력 {prevHP} -> {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health}");
-                Console.WriteLine($"Gold {prevGold} G -> {Program.Player.Gold} G");
+                Console.WriteLine($"체력 {prevHP} -> {GameManager.Instance.Player.characterStat.Health}");
+                Console.WriteLine($"Gold {prevGold} G -> {GameManager.Instance.Player.Gold} G");
                 Console.WriteLine();
 
                 Console.WriteLine("0. 나가기");
@@ -80,7 +77,7 @@ namespace MyTextRPG
                 Console.WriteLine();
 
                 Console.WriteLine("[탐험 결과]");
-                Console.WriteLine($"체력 {prevHP} -> {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health}");
+                Console.WriteLine($"체력 {prevHP} -> {GameManager.Instance.Player.characterStat.Health}");
                 Console.WriteLine();
 
                 Console.WriteLine("0. 나가기");
@@ -109,17 +106,17 @@ namespace MyTextRPG
             {
                 if (ret <= dungeonList.Count)
                 {
-                    prevGold = Program.Player.Gold;
-                    prevHP = Program.Player.characterStat.Health + CharacterBaseStatData.BaseHealth;
+                    prevGold = GameManager.Instance.Player.Gold;
+                    prevHP = GameManager.Instance.Player.characterStat.Health;
 
                     selectedDungeon = dungeonList[ret - 1].dungeonName;
 
                     isClear = dungeonList[ret - 1].Enter();
                     PopUpDungeonResult();
 
-                    if (Program.Player.characterStat.Health <= -100)
+                    if (GameManager.Instance.Player.characterStat.Health <= 0)
                     {
-                        Program.Player.OnDie?.Invoke();
+                        GameManager.Instance.Player.OnDie?.Invoke();
                     }
 
                     return ret;
@@ -132,7 +129,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case DungeonCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
+                    GameManager.Instance.CurrentScene = new IntroScene();
                     break;
                 default:
                     ret = -1;

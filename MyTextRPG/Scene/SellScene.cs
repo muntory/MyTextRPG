@@ -53,12 +53,12 @@ namespace MyTextRPG
             Console.WriteLine("보유중인 아이템을 판매할 수 있는 상점입니다.");
             Console.WriteLine();
             Console.WriteLine("[보유 골드]");
-            Console.WriteLine($"{Program.Player.Gold} G");
+            Console.WriteLine($"{GameManager.Instance.Player.Gold} G");
             Console.WriteLine();
 
 
             int itemIndex = 1;
-            foreach (int itemId in Program.Player.inventory)
+            foreach (int itemId in GameManager.Instance.Player.inventory)
             {
                 ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
                 if (itemData == null) continue;
@@ -83,9 +83,9 @@ namespace MyTextRPG
 
             if (ret > 0)
             {
-                if (ret <= Program.Player.inventory.Count)
+                if (ret <= GameManager.Instance.Player.inventory.Count)
                 {
-                    Program.Player.OnSellItem?.Invoke((Program.Player.inventory[ret - 1]));
+                    GameManager.Instance.Player.OnSellItem?.Invoke((GameManager.Instance.Player.inventory[ret - 1]));
 
                     errorMsg = "판매를 완료했습니다.";
                     return ret;
@@ -98,7 +98,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case SellCommand.Quit:
-                    Program.CurrentScene = new StoreScene();
+                    GameManager.Instance.CurrentScene = new StoreScene();
                     break;
                 default:
                     ret = -1;

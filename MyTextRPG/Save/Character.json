@@ -1,0 +1,20 @@
+{
+  "Name": "Chad",
+  "RootClass": "\uC804\uC0AC",
+  "Gold": 213,
+  "DungeonCountToLevelUp": 2,
+  "Level": 2,
+  "BaseAttack": 10.5,
+  "ModifierAttack": 2,
+  "BaseDefense": 6,
+  "ModifierDefense": 9,
+  "Health": 79,
+  "Inventory": [
+    3,
+    1
+  ],
+  "EquipList": {
+    "Weapon": 3,
+    "Armor": 1
+  }
+}

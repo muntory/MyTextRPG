@@ -49,7 +49,7 @@ namespace MyTextRPG
             }
 
 
-            return $"- {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(Program.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
+            return $"- {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(GameManager.Instance.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
         }
 
         public override void Render()
@@ -60,7 +60,7 @@ namespace MyTextRPG
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
             Console.WriteLine();
             Console.WriteLine("[보유 골드]");
-            Console.WriteLine($"{Program.Player.Gold} G");
+            Console.WriteLine($"{GameManager.Instance.Player.Gold} G");
             Console.WriteLine();
 
             foreach (int itemId in store.itemList)
@@ -91,13 +91,13 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case StoreCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
+                    GameManager.Instance.CurrentScene = new IntroScene();
                     break;
                 case StoreCommand.Buy:
-                    Program.CurrentScene = new BuyScene();
+                    GameManager.Instance.CurrentScene = new BuyScene();
                     break;
                 case StoreCommand.Sell:
-                    Program.CurrentScene = new SellScene();
+                    GameManager.Instance.CurrentScene = new SellScene();
                     break;
                 default:
                     ret = -1;

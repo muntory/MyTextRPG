@@ -47,7 +47,7 @@ namespace MyTextRPG
                     break;
             }
 
-            return $"- {index} {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(Program.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
+            return $"- {index} {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(GameManager.Instance.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
         }
 
         public override void Render()
@@ -58,7 +58,7 @@ namespace MyTextRPG
             Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
             Console.WriteLine();
             Console.WriteLine("[보유 골드]");
-            Console.WriteLine($"{Program.Player.Gold} G");
+            Console.WriteLine($"{GameManager.Instance.Player.Gold} G");
             Console.WriteLine();
 
 
@@ -90,7 +90,7 @@ namespace MyTextRPG
             {
                 if (ret <= store.itemList.Count)
                 {
-                    int? result = Program.Player.OnBuyItem?.Invoke(store.itemList[ret - 1]);
+                    int? result = GameManager.Instance.Player.OnBuyItem?.Invoke(store.itemList[ret - 1]);
 
                     if (result.HasValue)
                     {
@@ -117,7 +117,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case BuyCommand.Quit:
-                    Program.CurrentScene = new StoreScene();
+                    GameManager.Instance.CurrentScene = new StoreScene();
                     break;
                 default:
                     ret = -1;

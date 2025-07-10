@@ -21,13 +21,14 @@ namespace MyTextRPG
             Console.WriteLine("캐릭터의 정보가 표시됩니다.");
             Console.WriteLine();
 
+            Character player = GameManager.Instance.Player;
             // 캐릭터 스탯 출력
-            Console.WriteLine($"Lv. {Program.Player.characterStat.Level}");
-            Console.WriteLine($"{Program.Player.Name} ( {Program.Player.RootClass} )");
-            Console.WriteLine($"공격력 : {CharacterBaseStatData.BaseAttack + Program.Player.characterStat.Attack} {(Program.Player.characterStat.Attack > 0 ? $"(+{Program.Player.characterStat.Attack})" : "")}");
-            Console.WriteLine($"방어력 : {CharacterBaseStatData.BaseDefense + Program.Player.characterStat.Defense} {(Program.Player.characterStat.Defense > 0 ? $"(+{Program.Player.characterStat.Defense})" : "")}");
-            Console.WriteLine($"체 력 : {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health}  {(Program.Player.characterStat.Health > 0 ? $"(+{Program.Player.characterStat.Health})" : "")}");
-            Console.WriteLine($"Gold : {Program.Player.Gold} G");
+            Console.WriteLine($"Lv. {player.characterStat.Level}");
+            Console.WriteLine($"{player.Name} ( {player.RootClass} )");
+            Console.WriteLine($"공격력 : {player.characterStat.FinalAttack} {(player.characterStat.ModifierAttack > 0 ? $"(+{player.characterStat.ModifierAttack})" : "")}");
+            Console.WriteLine($"방어력 : {player.characterStat.FinalDefense} {(player.characterStat.ModifierDefense > 0 ? $"(+{player.characterStat.ModifierDefense})" : "")}");
+            Console.WriteLine($"체 력 : {player.characterStat.Health}");
+            Console.WriteLine($"Gold : {GameManager.Instance.Player.Gold} G");
             Console.WriteLine();
 
             Console.WriteLine("0. 나가기");
@@ -45,7 +46,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case StatusCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
+                    GameManager.Instance.CurrentScene = new IntroScene();
                     break;
                 default:
                     ret = 0;

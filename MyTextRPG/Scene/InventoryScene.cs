@@ -40,10 +40,10 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case InventoryCommand.OpenEquipment:
-                    Program.CurrentScene = new EquipmentScene();
+                    GameManager.Instance.CurrentScene = new EquipmentScene();
                     break;
                 case InventoryCommand.Quit:
-                    Program.CurrentScene = new IntroScene();
+                    GameManager.Instance.CurrentScene = new IntroScene();
                     break;
                 default:
                     ret = -1;

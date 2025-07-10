@@ -23,7 +23,7 @@ namespace MyTextRPG
                 return string.Empty;
 
             string EquipMark;
-            if (Program.Player.equipList.ContainsValue(itemData.Id))
+            if (GameManager.Instance.Player.equipList.ContainsValue(itemData.Id))
             {
                 EquipMark = "[E]";
             }
@@ -63,7 +63,7 @@ namespace MyTextRPG
 
             int itemIndex = 1;
 
-            foreach (int itemId in Program.Player.inventory)
+            foreach (int itemId in GameManager.Instance.Player.inventory)
             {
 
                 ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
@@ -90,9 +90,9 @@ namespace MyTextRPG
 
             if (ret > 0)
             {
-                if (ret <= Program.Player.inventory.Count)
+                if (ret <= GameManager.Instance.Player.inventory.Count)
                 {
-                    Program.Player.OnEquipItem?.Invoke(Program.Player.inventory[ret - 1]);
+                    GameManager.Instance.Player.OnEquipItem?.Invoke(GameManager.Instance.Player.inventory[ret - 1]);
                     return ret;
                 }
             }
@@ -102,7 +102,7 @@ namespace MyTextRPG
             switch (cmd)
             {
                 case EquipmentCommand.Quit:
-                    Program.CurrentScene = new InventoryScene();
+                    GameManager.Instance.CurrentScene = new InventoryScene();
                     break;
                 default:
                     ret = -1;
