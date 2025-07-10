@@ -19,11 +19,11 @@ namespace MyTextRPG
             int randomValue = new Random().Next(0, 10);
             bool success;
             int finalGold;
-            int rewardRatio;
+            double rewardRatio;
             int finalHP;
-            int playerDefense = Program.Player.characterStat.Defense + CharacterBaseStatData.BaseDefense;
-            int playerAttack = Program.Player.characterStat.Attack + CharacterBaseStatData.BaseAttack;
-            int weightHP = playerDefense - baseDefense;
+            float playerDefense = Program.Player.characterStat.Defense + CharacterBaseStatData.BaseDefense;
+            float playerAttack = Program.Player.characterStat.Attack + CharacterBaseStatData.BaseAttack;
+            int weightHP = (int)playerDefense - baseDefense;
 
             if (playerDefense < baseDefense)
             {
@@ -44,8 +44,9 @@ namespace MyTextRPG
             finalHP = new Random().Next(hpLow + weightHP, hpHigh + 1 + weightHP);
             if (success)
             {
-                rewardRatio = new Random().Next(playerAttack, playerAttack * 2 + 1);
-                finalGold = (int)(baseGold * rewardRatio * 0.01f);
+                Program.Player.DungeonCountToLevelUp--;
+                rewardRatio = playerAttack * (new Random().NextDouble() + 1.0);
+                finalGold = (int)(baseGold * (rewardRatio * 0.01 + 1.0));
 
                 Program.Player.characterStat.Health -= finalHP;
                 Program.Player.Gold += finalGold;

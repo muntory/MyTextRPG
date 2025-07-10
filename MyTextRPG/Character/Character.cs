@@ -12,6 +12,25 @@ namespace MyTextRPG
         public string Name { get; set; }
         public string RootClass { get; set; }
         public int Gold { get; set; }
+        int dungeonCountToLevelUp = 1;
+        public int DungeonCountToLevelUp
+        {
+            get
+            {
+                return dungeonCountToLevelUp;
+            }
+            set
+            {
+                dungeonCountToLevelUp = value;
+
+                if (dungeonCountToLevelUp == 0)
+                {
+                    LevelUp();
+                    dungeonCountToLevelUp = characterStat.Level;
+                }
+                
+            }
+        }
 
         public Action<int> OnEquipItem;
         public Func<int, int> OnBuyItem;
@@ -165,6 +184,13 @@ namespace MyTextRPG
 
             characterStat.Health = -90;
             Program.CurrentScene = new IntroScene();
+        }
+
+        public void LevelUp()
+        {
+            characterStat.Level++;
+            CharacterBaseStatData.BaseAttack += 0.5f;
+            CharacterBaseStatData.BaseDefense += 1f;
         }
     }
 }

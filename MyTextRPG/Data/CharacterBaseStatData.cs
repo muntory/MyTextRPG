@@ -8,9 +8,9 @@ namespace MyTextRPG
 {
     internal static class CharacterBaseStatData
     {
-        public static int BaseAttack { get; } = 10;
-        public static int BaseDefense { get; } = 5;
-        public static int BaseHealth { get; } = 100;
+        public static float BaseAttack { get; set; } = 10;
+        public static float BaseDefense { get; set; } = 5;
+        public static int BaseHealth { get; set; } = 100;
 
     }
 }

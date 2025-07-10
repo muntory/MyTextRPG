@@ -66,7 +66,7 @@ namespace MyTextRPG
 
                 Console.WriteLine("[탐험 결과]");
                 Console.WriteLine($"체력 {prevHP} -> {CharacterBaseStatData.BaseHealth + Program.Player.characterStat.Health}");
-                Console.WriteLine($"Gold {prevGold} G -> {Program.Player.Gold}");
+                Console.WriteLine($"Gold {prevGold} G -> {Program.Player.Gold} G");
                 Console.WriteLine();
 
                 Console.WriteLine("0. 나가기");
