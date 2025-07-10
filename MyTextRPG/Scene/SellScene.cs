@@ -41,8 +41,8 @@ namespace MyTextRPG
                     StatType = "";
                     break;
             }
+            return $"{ConsolePrintManager.PadRightToWidth($"- {index} {itemData.Name} ", 22)} | {ConsolePrintManager.PadRightToWidth($"{StatType} + {itemData.Value}", 12)} | {ConsolePrintManager.PadRightToWidth(itemData.Description, 60)} | {ConsolePrintManager.PadLeftToWidth((GameManager.Instance.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G"), 8)}";
 
-            return $"- {index} {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(int)(storeItemData.Price * 0.85f)} G";
         }
 
         public override void Render()

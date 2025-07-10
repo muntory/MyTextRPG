@@ -49,7 +49,7 @@ namespace MyTextRPG
                     break;
             }
 
-            return $"{index} {EquipMark}{itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}";
+            return $"{ConsolePrintManager.PadRightToWidth($"- {index} {EquipMark}{itemData.Name}", 22)} | {ConsolePrintManager.PadRightToWidth($"{StatType} + {itemData.Value}", 12)} | {ConsolePrintManager.PadRightToWidth(itemData.Description, 60)}";
         }
 
         public override void Render()

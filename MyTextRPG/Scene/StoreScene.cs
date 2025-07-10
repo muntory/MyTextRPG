@@ -49,7 +49,7 @@ namespace MyTextRPG
             }
 
 
-            return $"- {itemData.Name}\t| {StatType} {(itemData.Value >= 0 ? "+" : "-")}{itemData.Value}\t| {itemData.Description}\t| {(GameManager.Instance.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G")}";
+            return $"- {ConsolePrintManager.PadRightToWidth(itemData.Name, 16)} | {ConsolePrintManager.PadRightToWidth($"{StatType} + {itemData.Value}", 12)} | {ConsolePrintManager.PadRightToWidth(itemData.Description, 60)} | {ConsolePrintManager.PadLeftToWidth((GameManager.Instance.Player.inventory.Contains(itemId) ? "구매완료" : $"{storeItemData.Price} G"), 8)}";
         }
 
         public override void Render()
