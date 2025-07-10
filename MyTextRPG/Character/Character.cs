@@ -16,12 +16,13 @@ namespace MyTextRPG
         public Action<int> OnEquipItem;
         public Func<int, int> OnBuyItem;
         public Action<int> OnSellItem;
+        public Action OnDie;
         public Func<int> OnRest;
 
         public CharacterStat characterStat;
         public List<int> inventory;
         public Dictionary<ItemType, int> equipList;
-        
+
 
         public Character()
         {
@@ -36,6 +37,7 @@ namespace MyTextRPG
             OnEquipItem += EquipItem;
             OnBuyItem += BuyItem;
             OnSellItem += SellItem;
+            OnDie += Die;
             OnRest += Rest;
             equipList = new Dictionary<ItemType, int>();
             Gold = 1500;
@@ -141,9 +143,28 @@ namespace MyTextRPG
             Gold -= RestScene.Fare;
             characterStat.Health = Math.Min(characterStat.Health + RestScene.HealAmount, 0);
             return 1;
-            
+
         }
 
-      
+        public void Die() // 죽으면 랜덤으로 아이템 잃어버리는 시스템
+        {
+            if (inventory.Count == 0)
+            {
+                Gold = (int)(Gold * 0.7f);
+            }
+            else
+            {
+                int randomItemId = inventory[new Random().Next(inventory.Count)];
+
+                if (equipList.ContainsValue(randomItemId))
+                {
+                    EquipItem(randomItemId); // 장착중인 아이템은 해제
+                }
+                inventory.Remove(randomItemId); // 아이템 제거
+            }
+
+            characterStat.Health = -90;
+            Program.CurrentScene = new IntroScene();
+        }
     }
 }

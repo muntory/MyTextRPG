@@ -14,6 +14,7 @@ namespace MyTextRPG
             ViewStatus = 1,
             OpenInventory,
             OpenStore,
+            GoDungeon,
             GoRest,
         }
 
@@ -28,7 +29,8 @@ namespace MyTextRPG
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
-            Console.WriteLine("4. 휴식하기");
+            Console.WriteLine("4. 던전 입장");
+            Console.WriteLine("5. 휴식하기");
             Console.WriteLine();
 
             PrintErrorMsg();
@@ -50,6 +52,9 @@ namespace MyTextRPG
                     break;
                 case IntroCommand.OpenStore:
                     Program.CurrentScene = new StoreScene();
+                    break;
+                case IntroCommand.GoDungeon:
+                    Program.CurrentScene = new DungeonScene();
                     break;
                 case IntroCommand.GoRest:
                     Program.CurrentScene = new RestScene();

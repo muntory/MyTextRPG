@@ -20,7 +20,16 @@ namespace MyTextRPG
         public int Level { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }
-        public int Health { get; set; }
+
+        int health;
+        public int Health 
+        {
+            get { return health; } 
+            set 
+            { 
+                health = Math.Clamp(value, -100, 0);
+            } 
+        }
 
         public CharacterStat()
         {
