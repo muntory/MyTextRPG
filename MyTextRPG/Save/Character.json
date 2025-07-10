@@ -1,20 +1,18 @@
 {
-  "Name": "Chad",
-  "RootClass": "\uC804\uC0AC",
-  "Gold": 213,
-  "DungeonCountToLevelUp": 2,
+  "Name": "\uB300\uD638\uD584",
+  "RootClass": "\uC720\uD29C\uBC84",
+  "Gold": 753,
+  "DungeonCountToLevelUp": 1,
   "Level": 2,
   "BaseAttack": 10.5,
-  "ModifierAttack": 2,
+  "ModifierAttack": 0,
   "BaseDefense": 6,
-  "ModifierDefense": 9,
-  "Health": 79,
+  "ModifierDefense": 11,
+  "Health": 89,
   "Inventory": [
-    3,
-    1
+    10
   ],
   "EquipList": {
-    "Weapon": 3,
-    "Armor": 1
+    "Shield": 10
   }
 }

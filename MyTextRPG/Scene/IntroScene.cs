@@ -11,7 +11,8 @@ namespace MyTextRPG
         public enum IntroCommand
         {
             Invalid = -1,
-            ViewStatus = 1,
+            CreateCharacter,
+            ViewStatus,
             OpenInventory,
             OpenStore,
             GoDungeon,
@@ -28,6 +29,7 @@ namespace MyTextRPG
             Console.WriteLine("이곳에서 던전으로 들어가기전 활동을 할 수 있습니다.");
             Console.WriteLine();
 
+            Console.WriteLine("0. 새로운 캐릭터 생성");
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
@@ -47,6 +49,9 @@ namespace MyTextRPG
 
             switch (cmd)
             {
+                case IntroCommand.CreateCharacter:
+                    GameManager.Instance.CurrentScene = new NewCharacterScene();
+                    break;
                 case IntroCommand.ViewStatus:
                     GameManager.Instance.CurrentScene = new StatusScene();
                     break;
