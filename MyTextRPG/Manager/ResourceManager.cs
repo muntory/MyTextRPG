@@ -17,6 +17,8 @@ namespace MyTextRPG
             get { return instance; }
         }
 
+        public static string GameRootDir = $"{AppDomain.CurrentDomain.BaseDirectory}/../../..";
+
         Dictionary<int, ItemData> itemList = new Dictionary<int, ItemData>();
         Dictionary<int, StoreItemData> storeItemList = new Dictionary<int, StoreItemData>();
 
@@ -46,6 +48,11 @@ namespace MyTextRPG
                 itemList.Add(item.Id, item);
             }
 
+        }
+
+        public int GetLoadedItemDataCount()
+        {
+            return itemList.Count;
         }
 
         public void LoadStoreItemData(string jsonPath)

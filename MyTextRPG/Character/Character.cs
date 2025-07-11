@@ -13,6 +13,10 @@ namespace MyTextRPG
         public string RootClass { get; set; }
         public int Gold { get; set; }
         int dungeonCountToLevelUp = 1;
+
+        /// <summary>
+        /// 레벨업 하기까지 남은 던전 클리어 횟수 ex) Lv.1 -> Lv.2 던전 1회 클리어 필요
+        /// </summary>
         public int DungeonCountToLevelUp
         {
             get
@@ -60,12 +64,15 @@ namespace MyTextRPG
             Gold = 1500;
         }
 
+        /// <summary>
+        /// <paramref name="itemId"/> 아이템을 장착, 이미 장착중이라면 장착해제, 같은 타입의 아이템 장착시 기존의 아이템 장착해제 후 장착
+        /// </summary>
+        /// <param name="itemId"></param>
         public void EquipItem(int itemId)
         {
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
             if (itemData == null) return;
             int modifierValue;
-            int equippedItemId;
 
             if (equipList.Values.Contains(itemId))
             {
@@ -106,6 +113,11 @@ namespace MyTextRPG
         // -1 : 이미 구매한 아이템
         // 0 : 금액 부족
         // 1 : 구매 성공
+        /// <summary>
+        /// <paramref name="itemId"/>해당 아이템 구매
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <returns>int (이미 구매한 아이템 : -1, 금액 부족 : 0, 구매 성공 : 1)</returns>
         public int BuyItem(int itemId)
         {
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
@@ -128,6 +140,10 @@ namespace MyTextRPG
             return 1;
         }
 
+        /// <summary>
+        /// 장착 중일시 해당 아이템 장착 해제 후 판매
+        /// </summary>
+        /// <param name="itemId"></param>
         public void SellItem(int itemId)
         {
             ItemData itemData = ResourceManager.Instance.GetItemData(itemId);
@@ -177,7 +193,7 @@ namespace MyTextRPG
                 inventory.Remove(randomItemId); // 아이템 제거
             }
 
-            characterStat.Health = 10;
+            characterStat.Health = 1;
             GameManager.Instance.CurrentScene = new IntroScene();
         }
 

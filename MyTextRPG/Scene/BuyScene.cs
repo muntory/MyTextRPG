@@ -97,15 +97,15 @@ namespace MyTextRPG
                     {
                         if (result > 0)
                         {
-                            errorMsg = "구매를 완료했습니다.";
+                            msg = "구매를 완료했습니다.";
                         }
                         else if (result < 0)
                         {
-                            errorMsg = "이미 구매한 아이템입니다.";
+                            msg = "이미 구매한 아이템입니다.";
                         }
                         else
                         {
-                            errorMsg = "Gold가 부족합니다.";
+                            msg = "Gold가 부족합니다.";
                         }
                     }
                     return ret;
@@ -122,7 +122,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
-                    errorMsg = "잘못된 입력입니다.";
+                    msg = "잘못된 입력입니다.";
                     break;
             }
 

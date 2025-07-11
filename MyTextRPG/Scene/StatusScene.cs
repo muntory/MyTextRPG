@@ -50,7 +50,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = 0;
-                    errorMsg = "잘못된 입력입니다.";
+                    msg = "잘못된 입력입니다.";
                     break;
             }
 

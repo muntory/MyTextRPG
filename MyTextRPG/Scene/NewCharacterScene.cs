@@ -11,7 +11,7 @@ namespace MyTextRPG
     {
         public NewCharacterScene()
         {
-            string characterDataPath = $"{Directory.GetCurrentDirectory()}/Save/Character.json";
+            string characterDataPath = $"{ResourceManager.GameRootDir}/Save/Character.json";
             if (File.Exists(characterDataPath))
             {
                 File.Delete(characterDataPath);

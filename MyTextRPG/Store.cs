@@ -12,7 +12,7 @@ namespace MyTextRPG
 
         public Store()
         {
-            for (int i = 0; i < 16; ++i)
+            for (int i = 0; i < ResourceManager.Instance.GetLoadedItemDataCount(); ++i)
             {
                 itemList.Add(i + 1);
             }

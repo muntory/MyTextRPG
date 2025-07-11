@@ -9,6 +9,12 @@ namespace MyTextRPG
 {
     internal static class ConsolePrintManager
     {
+        /// <summary>
+        /// 문자열의 길이를 <paramref name="totalWidth"/>만큼 설정하고 부족한 길이만큼 <paramref name="str"/>의 오른쪽에 빈칸으로 패딩을 설정하여 반환
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="totalWidth"></param>
+        /// <returns></returns>
         public static string PadRightToWidth(string str, int totalWidth)
         {
             int width = 0;
@@ -23,6 +29,12 @@ namespace MyTextRPG
             return str + new string(' ', padding);
         }
 
+        /// <summary>
+        /// 문자열의 길이를 <paramref name="totalWidth"/>만큼 설정하고 부족한 길이만큼 <paramref name="str"/>의 왼쪽에 빈칸으로 패딩을 설정하여 반환
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="totalWidth"></param>
+        /// <returns></returns>
         public static string PadLeftToWidth(string str, int totalWidth)
         {
             int width = 0;

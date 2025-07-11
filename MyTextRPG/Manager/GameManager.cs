@@ -29,9 +29,12 @@ namespace MyTextRPG
             }
         }
 
+        /// <summary>
+        /// 게임 데이터를 JSON 파일로 저장
+        /// </summary>
         public void SaveGameData()
         {
-            string savePath = $"{Directory.GetCurrentDirectory()}/Save/Character.json";
+            string savePath = $"{ResourceManager.GameRootDir}/Save/Character.json";
             string directory = Path.GetDirectoryName(savePath);
 
             if (!Directory.Exists(directory))
@@ -53,9 +56,12 @@ namespace MyTextRPG
             File.WriteAllText(savePath, json);
         }
 
+        /// <summary>
+        /// JSON 데이터 파일을 로드해서 플레이어 캐릭터에 저장된 값을 적용
+        /// </summary>
         public void LoadGameData()
         {
-            string savePath = $"{Directory.GetCurrentDirectory()}/Save/Character.json";
+            string savePath = $"{ResourceManager.GameRootDir}/Save/Character.json";
 
             if (!File.Exists(savePath))
             {
@@ -90,6 +96,10 @@ namespace MyTextRPG
             Player.equipList = saveData.EquipList;
         }
 
+        /// <summary>
+        /// 현재 플레이어 캐릭터의 데이터를 저장하기 위한 SaveData를 Return
+        /// </summary>
+        /// <returns>캐릭터 저장 정보가 포함되어 있는 SaveData</returns>
         private SaveData GetSaveData()
         {
             SaveData saveData = new SaveData();

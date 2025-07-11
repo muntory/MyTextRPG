@@ -9,12 +9,16 @@ namespace MyTextRPG
     internal class Scene
     {
 
-        protected string errorMsg = null;
+        /// <summary>
+        /// Render() 함수의 마지막에 출력되는 메시지
+        /// </summary>
+        protected string msg = null;
         public virtual void Render()
         {
             Console.Clear();
 
         }
+
 
         public virtual int GetInput()
         {
@@ -37,11 +41,11 @@ namespace MyTextRPG
 
         public void PrintErrorMsg()
         {
-            if (errorMsg != null)
+            if (msg != null)
             {
-                Console.WriteLine(errorMsg);
+                Console.WriteLine(msg);
                 Console.WriteLine();
-                errorMsg = null;
+                msg = null;
             }
         }
     }

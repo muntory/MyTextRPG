@@ -13,7 +13,6 @@ namespace MyTextRPG
         Armor,
         Shield,
 
-
     }
     internal class ItemData
     {

@@ -45,11 +45,11 @@ namespace MyTextRPG
                     {
                         if (result == 0)
                         {
-                            errorMsg = "Gold 가 부족합니다.";
+                            msg = "Gold 가 부족합니다.";
                         }
                         if (result == 1)
                         {
-                            errorMsg = $"휴식을 완료했습니다. (현재 체력 : {GameManager.Instance.Player.characterStat.Health})";
+                            msg = $"휴식을 완료했습니다. (현재 체력 : {GameManager.Instance.Player.characterStat.Health})";
                         }
                     }
                     break;
@@ -58,7 +58,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
-                    errorMsg = "잘못된 입력입니다.";
+                    msg = "잘못된 입력입니다.";
                     break;
             }
 

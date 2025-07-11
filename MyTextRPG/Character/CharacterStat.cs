@@ -32,14 +32,14 @@ namespace MyTextRPG
             }
         }
         public double BaseAttack = CharacterBaseStat.BaseAttack;
-        public double ModifierAttack = 0.0;
+        public double ModifierAttack = 0.0; // 아이템 장착으로 얻는 효과
         public double FinalAttack
         {
             get { return BaseAttack + ModifierAttack; }
         }
 
         public double BaseDefense = CharacterBaseStat.BaseDefense;
-        public double ModifierDefense = 0.0;
+        public double ModifierDefense = 0.0; // 아이템 장착으로 얻는 효과
         public double FinalDefense
         {
             get { return BaseDefense + ModifierDefense; }

@@ -87,7 +87,7 @@ namespace MyTextRPG
                 {
                     GameManager.Instance.Player.OnSellItem?.Invoke((GameManager.Instance.Player.inventory[ret - 1]));
 
-                    errorMsg = "판매를 완료했습니다.";
+                    msg = "판매를 완료했습니다.";
                     return ret;
                 }
 
@@ -102,7 +102,7 @@ namespace MyTextRPG
                     break;
                 default:
                     ret = -1;
-                    errorMsg = "잘못된 입력입니다.";
+                    msg = "잘못된 입력입니다.";
                     break;
             }
 

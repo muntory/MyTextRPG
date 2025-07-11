@@ -42,6 +42,7 @@ namespace MyTextRPG
             }
 
             finalHP = new Random().Next(hpLow - weightHP, hpHigh + 1 - weightHP);
+
             if (success)
             {
                 GameManager.Instance.Player.DungeonCountToLevelUp--;
